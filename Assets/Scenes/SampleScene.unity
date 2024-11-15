@@ -3169,6 +3169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mixer: {fileID: 24300002, guid: df50ca779c314da40a976f43b09e80f7, type: 2}
+  _background: {fileID: 1505932439}
 --- !u!4 &1582843976
 Transform:
   m_ObjectHideFlags: 0

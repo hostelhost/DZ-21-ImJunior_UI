@@ -4,53 +4,60 @@ using UnityEngine.Audio;
 public class UISoundManager : MonoBehaviour
 {
     //Задачи!!!! 
-    // 1. Прочитать комментарий ниже!
-    // 2. Сделать так что бы ползунок, не менял звук если выключена галочка. Или пусть галочка включается автоматически если трогают ползунок
-    // 3. Попробовать захешировать данные как в аниматоре "MixerHashData".
-    // 4. Сделать звук всем обьектам. Причисать и прилизать проект.
 
-    private const string MainGroup = "UIVolume";
-    private const float MaximumValume = 0f;
-    private const float MinimumValume = -80f;
+    // 1. Определить оставляем один этот класс. или же разбиваем на 3 разных класса. 1. главная группа. 2. кнопки. 3.беграунд
+    // 2. определить нужен ли интерфейс или обстрактный класс.(разобраться что лучше подходит)
+    //3. комментарии ниже упрощат понимание, в разборка 1-го пункта. затем удалить.!
 
-    [SerializeField] private AudioMixerGroup _mixer;
+    private const string MainGroup = "UIVolume";              // Нужно ВСЕМ 3-м КЛАССАМ
+    private const float MaximumValume = 0f;                          // Нужно ВСЕМ 3-м КЛАССАМ
+    private const float MinimumValume = -80f;                        // Нужно ВСЕМ 3-м КЛАССАМ
+    private const int FormulaConversion = 20;                         // Нужно ВСЕМ 3-м КЛАССАМ
 
-    private int _formulaConversion = 20;
-    private float _currentValue = 0;
+    [SerializeField] private AudioMixerGroup _mixer;                    // Нужно ВСЕМ 3-м КЛАССАМ
+    [SerializeField] private AudioSource _background; //нужен только главному классу
 
-    public void TriggleMusic(bool isWorking)
+    private float _currentValue;                                  // Нужно ВСЕМ 3-м КЛАССАМ
+    private bool _isWorkingMusic; //нужен только главному классу
+
+    private void Start() //нужен только главному классу
     {
-        //ПРОВЕРИТЬ РОБОТОСПОСОБНОСТЬ!!!!!!! Если все ок удалить работающий закоментированный код
+        _isWorkingMusic = _background.playOnAwake;
+    }
+
+    public void TriggleMusic(bool isWorking) //нужен только главному классу
+    {
         if (isWorking)
-            OnMusic();       
-        else       
-            OFFMusic();        
-
-        //if (isWorking)
-        //    _mixer.audioMixer.SetFloat(MainGroup, _maximumValume);      
-        //else
-        //    _mixer.audioMixer.SetFloat(MainGroup, _minimumValume);
+            OnMusic();
+        else
+            OFFMusic();
     }
 
-    public void ChangeVolum(float volume)
+    public void ChangeVolum(float volume)                              // Нужно ВСЕМ 3-м КЛАССАМ
     {
-        _currentValue = Mathf.Log10(volume) * _formulaConversion;
-        _mixer.audioMixer.SetFloat(MainGroup, _currentValue);
+        _currentValue = Mathf.Log10(volume) * FormulaConversion;
+
+        if (_isWorkingMusic)
+            _mixer.audioMixer.SetFloat(MainGroup, _currentValue);
     }
 
-    private void OnMusic()
+    private void OnMusic() //нужен только главному классу
     {
+        _isWorkingMusic = true;
+
         if (_currentValue < MaximumValume)
             _mixer.audioMixer.SetFloat(MainGroup, _currentValue);
         else
             _mixer.audioMixer.SetFloat(MainGroup, MaximumValume);
-    }
+    } 
 
-    private void OFFMusic()
+    private void OFFMusic() //нужен только главному классу
     {
+        _isWorkingMusic = false;
+
         if (_currentValue < MinimumValume)
             _mixer.audioMixer.SetFloat(MainGroup, _currentValue);
         else
             _mixer.audioMixer.SetFloat(MainGroup, MinimumValume);
-    }
+    } 
 }
