@@ -480,8 +480,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1582843975}
-        m_TargetAssemblyTypeName: UISoundManager, Assembly-CSharp
+      - m_Target: {fileID: 1446906153}
+        m_TargetAssemblyTypeName: UISoundMainGroup, Assembly-CSharp
         m_MethodName: ChangeVolum
         m_Mode: 0
         m_Arguments:
@@ -1637,8 +1637,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1582843975}
-        m_TargetAssemblyTypeName: UISoundManager, Assembly-CSharp
+      - m_Target: {fileID: 1446906153}
+        m_TargetAssemblyTypeName: UISoundMainGroup, Assembly-CSharp
         m_MethodName: TriggleMusic
         m_Mode: 0
         m_Arguments:
@@ -2936,6 +2936,52 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1446906151
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1446906152}
+  - component: {fileID: 1446906153}
+  m_Layer: 0
+  m_Name: UISoundMainGroup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1446906152
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446906151}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1582843976}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1446906153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446906151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44e8dfa3a59b4d24e8316eeb276ca803, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mixer: {fileID: -7041459965424965787, guid: df50ca779c314da40a976f43b09e80f7, type: 2}
+  _background: {fileID: 1505932439}
 --- !u!1 &1505932438
 GameObject:
   m_ObjectHideFlags: 0
@@ -3148,7 +3194,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1582843976}
-  - component: {fileID: 1582843975}
   m_Layer: 0
   m_Name: UIMenu
   m_TagString: Untagged
@@ -3156,20 +3201,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1582843975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1582843974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44e8dfa3a59b4d24e8316eeb276ca803, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _mixer: {fileID: 24300002, guid: df50ca779c314da40a976f43b09e80f7, type: 2}
-  _background: {fileID: 1505932439}
 --- !u!4 &1582843976
 Transform:
   m_ObjectHideFlags: 0
@@ -3188,6 +3219,7 @@ Transform:
   - {fileID: 235785092}
   - {fileID: 1903959348}
   - {fileID: 1004787502}
+  - {fileID: 1446906152}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1584516365
