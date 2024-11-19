@@ -66,11 +66,11 @@ AudioMixerController:
   m_UpdateMode: 0
   m_ExposedParameters:
   - guid: 40ee48db7c078fd45b9fea7db0cb5e5f
-    name: BackgroundVolume
+    name: Background
   - guid: 4eaa9ad13338f1f45bbb65aac044485e
-    name: ButtonsVolume
+    name: Buttons
   - guid: 0f57e050c2abdc94385821ab369f3d09
-    name: UIVolume
+    name: UI
   m_AudioMixerGroupViews:
   - guids:
     - 8e8729d0e3b86b443ad38543db4d0e29
