@@ -1,14 +1,16 @@
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class UISoundMainGroup : MonoBehaviour, ISoundGroup
-{          
-    private const float MaximumValume = 0f;                          
+{                        
     private const float MinimumValume = -80f;                        
     private const int FormulaConversion = 20;                         
 
     [SerializeField] private AudioMixerGroup _mixer;                    
-    [SerializeField] private AudioSource _background; 
+    [SerializeField] private AudioSource _background;
+    [SerializeField] private Slider _slider;
+    [SerializeField] private Toggle _toggle;
 
     private float _currentValue;                                  
     private bool _isWorkingMusic; 
@@ -18,12 +20,24 @@ public class UISoundMainGroup : MonoBehaviour, ISoundGroup
         _isWorkingMusic = _background.playOnAwake;
     }
 
-    public void TriggleMusic(bool isWorking) 
+    private void OnEnable()
+    {
+        _slider.onValueChanged.AddListener(ChangeVolum);
+        _toggle.onValueChanged.AddListener(TriggleMusic);
+    }
+
+    private void OnDisable()
+    {
+        _slider.onValueChanged.RemoveListener(ChangeVolum);
+        _toggle.onValueChanged.RemoveListener(TriggleMusic);
+    }
+
+    private void TriggleMusic(bool isWorking) 
     {
         if (isWorking)
             OnMusic();
         else
-            OFFMusic();
+            TurnOffMusic();
     }
 
     public void ChangeVolum(float volume)                              
@@ -34,23 +48,15 @@ public class UISoundMainGroup : MonoBehaviour, ISoundGroup
             _mixer.audioMixer.SetFloat(_mixer.name, _currentValue);
     }
 
-    private void OnMusic() 
+    private void OnMusic()
     {
         _isWorkingMusic = true;
+        _mixer.audioMixer.SetFloat(_mixer.name, _currentValue);
+    }
 
-        if (_currentValue < MaximumValume)
-            _mixer.audioMixer.SetFloat(_mixer.name, _currentValue);
-        else
-            _mixer.audioMixer.SetFloat(_mixer.name, MaximumValume);
-    } 
-
-    private void OFFMusic() 
+    private void TurnOffMusic()
     {
         _isWorkingMusic = false;
-
-        if (_currentValue < MinimumValume)
-            _mixer.audioMixer.SetFloat(_mixer.name, _currentValue);
-        else
-            _mixer.audioMixer.SetFloat(_mixer.name, MinimumValume);
-    } 
+        _mixer.audioMixer.SetFloat(_mixer.name, MinimumValume);
+    }
 }

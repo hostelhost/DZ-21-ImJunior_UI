@@ -1,4 +1,4 @@
 public interface ISoundGroup
 {
-    void ChangeVolum(float volume);
+   public void ChangeVolum(float volume);
 }
